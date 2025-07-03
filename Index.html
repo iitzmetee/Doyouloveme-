@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you love me?</title>
+    <style>
+        /* --- ส่วนของ CSS สำหรับตกแต่ง --- */
+        body {
+            background-color: #fce4ec; /* สีชมพูอ่อน */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* ป้องกัน scroll bar ตอนปุ่มหนี */
+        }
+        .container {
+            text-align: center;
+        }
+        #question-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.2s;
+        }
+        #yes-btn {
+            background-color: #4CAF50; /* สีเขียว */
+            margin-right: 70px;
+        }
+        #no-btn {
+            background-color: #f44336; /* สีแดง */
+            
+        }
+        #gif-container {
+            display: none; /* ซ่อนไว้ก่อนในตอนแรก */
+        }
+        #gif-container img {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="question-container">
+            <img src="https://gifdb.com/images/high/winking-animated-bear-5ggusjylzd25nk5r.webp" alt="Cute Bears">
+            <h1>เธอชอบเรามั้ยยย?</h1>
+            <div class="button-container">
+                <button id="yes-btn">ใช่</button>
+                <button id="no-btn">ไม่</button>
+            </div>
+        </div>
+
+        <div id="gif-container">
+            <img src="https://media.tenor.com/TEC6z0acIbUAAAAj/cute-bears-love.gif" alt="Happy Bears GIF">
+            <h1>ว่าแล้ววว! ❤️</h1>
+        </div>
+    </div>
+
+    <script>
+        // --- ส่วนของ JavaScript สำหรับการโต้ตอบ ---
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const questionContainer = document.getElementById('question-container');
+        const gifContainer = document.getElementById('gif-container');
+
+        // ฟังก์ชันสำหรับขยับปุ่ม No
+        function moveButton() {
+            // เพิ่ม position: absolute; เมื่อเอาเมาส์มาโดนครั้งแรก
+        if (noBtn.style.position !== 'absolute') {
+            noBtn.style.position = 'absolute';
+        }
+            const buttonWidth = noBtn.offsetWidth;
+            const buttonHeight = noBtn.offsetHeight;
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            // สุ่มตำแหน่งใหม่ในแกน X และ Y
+            const newX = Math.random() * (screenWidth - buttonWidth);
+            const newY = Math.random() * (screenHeight - buttonHeight);
+
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+        }
+
+        // เมื่อเอาเมาส์ไปชี้ที่ปุ่ม No ให้เรียกใช้ฟังก์ชัน moveButton
+        noBtn.addEventListener('mouseover', moveButton);
+
+        // เมื่อคลิกปุ่ม Yes
+        yesBtn.addEventListener('click', () => {
+            // ซ่อนส่วนของคำถาม
+            questionContainer.style.display = 'none';
+            // แสดงส่วนของ GIF
+            gifContainer.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
